@@ -5,14 +5,12 @@ const Body = () => {
  
  const router=createBrowserRouter([
     {
-        path :"/",element: <Body/>
+        path :"/",element: <Login/>
     },
     {
         path : "/Browse", element: <Browse/>
     },
-    {
-        path : "/Login", element: <Login/>
-    }
+   
  ])
  
     return (
