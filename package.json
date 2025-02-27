@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.6.0",
     "@tailwindcss/vite": "^4.0.6",
     "bootstrap": "^5.3.3",
+    "firebase": "^11.3.1",
     "i": "^0.3.7",
     "npm": "^11.1.0",
     "react": "^19.0.0",
