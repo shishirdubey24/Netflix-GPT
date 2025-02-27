@@ -6,11 +6,11 @@ const ValidationForm = (email, password) => {
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(password);
 
   if (!isEmailValid) {
-    console.log("Invalid email");
+    return "Invalid email";
   }
 
   if (!isPasswordValid) {
-    console.log("Invalid  password");
+    return "Invalid  password";
   } else return null;
 };
 
