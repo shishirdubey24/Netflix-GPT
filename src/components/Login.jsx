@@ -3,21 +3,26 @@ import Header from "./Header"
 import ValidationForm from "../utils/ValidationForm";
 import {  createUserWithEmailAndPassword,signInWithEmailAndPassword  } from "firebase/auth";
 import { auth} from "../utils/Firebase";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const[isSignedIn,setSignedIn]=useState(true);
   const [errormsg,seterrormsg] = useState(null);
+  const navigate = useNavigate();
  const handleSignup=()=>{
   setSignedIn(!isSignedIn)
  }
 const handleBtnClick=()=>{
+  // step-1:: validate user 
  const message=ValidationForm(email.current.value, password.current.value);
  seterrormsg(message); 
  if(message) return;
+  
+  //SIgn-up Logic
 
  if(!isSignedIn){
-  //SIgn-up Logic
- 
+ //create user account with Firebase Config
+
   createUserWithEmailAndPassword(auth, 
     email.current.value,
      password.current.value)
@@ -25,13 +30,14 @@ const handleBtnClick=()=>{
       // Signed up 
       const user = userCredential.user;
       console.log(user);
+     
       // ...
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       seterrormsg(errorMessage+errorCode);
-      // ..
+    
     });
  }
  else{
@@ -40,11 +46,13 @@ const handleBtnClick=()=>{
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    console.log(user);
+    console.log("Sign-in User is here",user);
+    navigate("/Browse");
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
+    console.log("Triggered error: " + errorMessage)
    seterrormsg(errorMessage+"\n\n"+errorCode)
   });
  }
