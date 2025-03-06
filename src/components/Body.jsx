@@ -25,7 +25,7 @@ const Body = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName } = user;
-        console.log("User is signed in:", user);
+      
         dispatch(addUser({ uid, email, displayName: displayName || "User" }));
       } else {
         console.log("User is signed out");
